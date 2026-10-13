@@ -1,0 +1,566 @@
+/* ==========================================================================
+   AI-POWERED STUDENT ANALYTICS & SUCCESS PLATFORM
+   Interactive Dashboard Stylesheet (KPMG Hackathon Evaluation Suite)
+   ========================================================================== */
+
+.dashboard-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.75rem 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Dashboard Header Banner */
+.dash-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dash-title-group h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+.dash-title-group p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+}
+
+.dash-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.role-tag-badge {
+  padding: 0.35rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  color: var(--cyan-bright);
+}
+
+/* Metric KPI Cards (4 Cards) */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.kpi-card {
+  padding: 1.25rem 1.4rem;
+  border-radius: 18px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-glass);
+}
+
+.kpi-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.kpi-icon-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--cyan-bright);
+}
+
+.kpi-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
+.kpi-number {
+  font-size: 1.9rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: #FFFFFF;
+}
+
+.kpi-delta-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.kpi-delta-tag.positive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+}
+
+.kpi-delta-tag.warning {
+  background: rgba(244, 63, 94, 0.15);
+  color: #FB7185;
+}
+
+.kpi-subtext {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Two-Column Analytics Layout: Bonus Feature Matrix + Explainable Score */
+.dash-analytics-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.5rem;
+}
+
+.analytics-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.analytics-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.analytics-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bonus-credit-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(34, 211, 238, 0.2));
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  color: #E0E7FF;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* KPMG Bonus Credit 1: Student Segmentation Matrix */
+.segmentation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.segment-item {
+  padding: 1rem 1.15rem;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  position: relative;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.segment-item:hover, .segment-item.highlighted {
+  border-color: var(--cyan-bright);
+  background: rgba(15, 26, 56, 0.85);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+}
+
+.segment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.segment-name {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.segment-count-badge {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+.segment-item.special-alert {
+  border-color: rgba(245, 158, 11, 0.45);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.segment-desc {
+  font-size: 0.73rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.segment-intervention-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--cyan-bright);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.25rem;
+}
+
+/* KPMG Bonus Credit 2: Explainable Score & Indicator Contribution */
+.explainable-score-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.student-focus-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(8, 14, 30, 0.8);
+  border: 1px solid var(--border-subtle);
+}
+
+.student-focus-name {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.student-focus-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.score-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.indicator-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.indicator-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.76rem;
+}
+
+.indicator-name {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.indicator-impact {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.indicator-impact.positive {
+  color: var(--emerald-accent);
+}
+
+.indicator-impact.negative {
+  color: var(--rose-accent);
+}
+
+.indicator-progress-bar {
+  height: 6px;
+  width: 100%;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.indicator-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.6s var(--ease-spring);
+}
+
+.indicator-fill.pos {
+  background: linear-gradient(90deg, #10B981, #22D3EE);
+}
+
+.indicator-fill.neg {
+  background: linear-gradient(90deg, #F43F5E, #F59E0B);
+}
+
+/* 7 Core Scope Data Pillars Banner */
+.seven-pillars-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.pillar-chip {
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.pillar-chip.active {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.45);
+  color: var(--cyan-bright);
+}
+
+/* Student Roster Table */
+.roster-card {
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--glass-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.roster-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.roster-search-input {
+  padding: 0.55rem 0.9rem 0.55rem 2.2rem;
+  border-radius: 10px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  color: #FFFFFF;
+  font-size: 0.84rem;
+  outline: none;
+  width: 260px;
+}
+
+.roster-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.filter-select {
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  outline: none;
+}
+
+.roster-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.roster-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.82rem;
+}
+
+.roster-table th {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.roster-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.roster-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.student-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.student-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(34, 211, 238, 0.2));
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: #FFFFFF;
+}
+
+.score-badge {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.score-badge.high {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.score-badge.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.score-badge.risk {
+  background: rgba(244, 63, 94, 0.15);
+  color: #FB7185;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.risk-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.risk-pill.academic-risk {
+  background: rgba(244, 63, 94, 0.15);
+  color: #FB7185;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.risk-pill.placement-risk {
+  background: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.risk-pill.safe {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.action-icon-btn {
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: var(--cyan-bright);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.action-icon-btn:hover {
+  background: var(--blue-electric);
+  color: #FFFFFF;
+}
+
+@media (max-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-analytics-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .segmentation-grid {
+    grid-template-columns: 1fr;
+  }
+}

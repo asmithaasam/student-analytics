@@ -1,0 +1,102 @@
+/* ==========================================================================
+   AI-POWERED STUDENT ANALYTICS & SUCCESS PLATFORM
+   Animations & Micro-interactions Stylesheet
+   ========================================================================== */
+
+/* Shimmer effect for buttons and highlight banners */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #FFFFFF 0%, #60A5FA 25%, #22D3EE 50%, #60A5FA 75%, #FFFFFF 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Floating animation for cards & badges */
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-subtle 4.5s ease-in-out 1.2s infinite;
+}
+
+/* Neon glow breathing animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25), 0 0 30px rgba(34, 211, 238, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.45), 0 0 45px rgba(34, 211, 238, 0.25);
+  }
+}
+
+.glow-breathing {
+  animation: glow-pulse 3.5s ease-in-out infinite;
+}
+
+/* View transitions */
+.view-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.view-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Radar pulse animation */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radar-sweep-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-sweep-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(34, 211, 238, 0.12) 60deg, transparent 65deg);
+  animation: radar-sweep 6s linear infinite;
+  pointer-events: none;
+}
+
+/* Input focus glow */
+.auth-input:focus {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

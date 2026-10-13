@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Powered Student Analytics and Success Platform</title>
+  <meta name="description" content="Turn student data into student success. Identify academic risks early, uncover hidden potential, and empower every student with data-driven insights." />
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2322D3EE' stroke-width='2'><path d='M22 10v6M2 10l10-5 10 5-10 5z'></path><path d='M6 12v5c3 3 9 3 12 0v-5'></path></svg>" />
+  
+  <!-- Google Fonts & Font Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Supabase JS Client via CDN (Supports live Supabase projects) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Background Interactive Neural Canvas & Glow Mesh -->
+  <div id="canvas-container">
+    <canvas id="neural-canvas"></canvas>
+  </div>
+  <div class="ambient-background"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Main Application Wrapper -->
+  <div class="app-container">
+
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+      <div class="brand-wrapper" id="brand-home-link">
+        <div class="brand-logo-icon">
+          <!-- Combined Graduation Cap + AI Neural Core Symbol -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12.5v4.5c3 2.5 9 2.5 12 0v-4.5"></path>
+            <circle cx="12" cy="10" r="1.5" fill="#22D3EE"></circle>
+            <circle cx="7" cy="14" r="1" fill="#3B82F6"></circle>
+            <circle cx="17" cy="14" r="1" fill="#3B82F6"></circle>
+          </svg>
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title">StudentSuccess <span style="color: var(--cyan-bright); font-weight: 800;">AI</span></span>
+          <span class="brand-subtitle">Smart Campus Analytics</span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <div class="hackathon-badge">
+          <span class="pulse-dot"></span>
+          <span>KPMG Smart Campus Challenge</span>
+        </div>
+        <button class="nav-btn" id="btn-open-supabase-settings" title="Configure Cloud Supabase or Test Demo Mode">
+          <i data-lucide="database" style="width: 14px; height: 14px;"></i>
+          <span>Auth Config</span>
+        </button>
+        <button class="nav-btn" id="nav-login-btn">Sign In</button>
+        <button class="nav-btn primary" id="nav-register-btn">Register</button>
+        <button class="nav-btn" id="nav-dashboard-btn" style="border-color: rgba(34, 211, 238, 0.4); color: var(--cyan-bright);">
+          <i data-lucide="layout-dashboard" style="width: 14px; height: 14px;"></i>
+          <span>Live Demo</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================================
+         VIEW 1: MASTER LOGIN EXPERIENCE (Default Active View)
+         ========================================================================= -->
+    <main id="login-view" class="view-section active">
+      <div class="auth-viewport">
+        <div class="auth-split-grid">
+          
+          <!-- Left Column: AI Branding & Project Overview -->
+          <section class="hero-branding">
+            <div class="hero-pill">
+              <span class="pulse-dot"></span>
+              <span class="hero-pill-text">INTELLIGENCE FOR BETTER OUTCOMES</span>
+            </div>
+
+            <div class="hero-heading-group">
+              <div class="hero-subhead">AI-Powered Student Analytics</div>
+              <h1 class="hero-title">
+                Turn Student Data Into <br />
+                <span class="gradient-text shimmer-text">Student Success.</span>
+              </h1>
+              <p class="hero-description">
+                Identify academic risks early, uncover hidden potential, and empower faculty and placement officers with decision intelligence.
+              </p>
+            </div>
+
+            <!-- 3 Core Feature Highlights -->
+            <div class="feature-highlights-grid">
+              <div class="feature-pill-card">
+                <div class="feature-card-icon">
+                  <i data-lucide="shield-alert"></i>
+                </div>
+                <div class="feature-card-title">Intelligent Risk Detection</div>
+                <div class="feature-card-desc">Early warning flags for attendance drop-offs, internal backlogs, and LMS disengagement.</div>
+              </div>
+
+              <div class="feature-pill-card">
+                <div class="feature-card-icon">
+                  <i data-lucide="trending-up"></i>
+                </div>
+                <div class="feature-card-title">Success Prediction</div>
+                <div class="feature-card-desc">Composite scoring synthesizing 7 campus data pillars into explainable benchmarks.</div>
+              </div>
+
+              <div class="feature-pill-card">
+                <div class="feature-card-icon">
+                  <i data-lucide="briefcase"></i>
+                </div>
+                <div class="feature-card-title">Placement Readiness</div>
+                <div class="feature-card-desc">Flags high CGPA students lacking coding practice and interview confidence before hiring season.</div>
+              </div>
+            </div>
+
+            <!-- Abstract AI Floating Telemetry Box -->
+            <div class="ai-telemetry-banner animate-float">
+              <div class="telemetry-col">
+                <span class="telemetry-label">Active Campus Index</span>
+                <span class="telemetry-val highlight-cyan">
+                  <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i> 82.4% Score
+                </span>
+              </div>
+              <div class="telemetry-divider"></div>
+              <div class="telemetry-col">
+                <span class="telemetry-label">At-Risk Interventions</span>
+                <span class="telemetry-val highlight-green">42 Targeted</span>
+              </div>
+              <div class="telemetry-divider"></div>
+              <div class="telemetry-col">
+                <span class="telemetry-label">AI Decision Confidence</span>
+                <span class="telemetry-val">99.4% Validated</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Right Column: Glassmorphism Login Card -->
+          <section class="auth-card-container">
+            <div class="glass-card glow-breathing">
+              
+              <div class="card-header">
+                <h2 class="card-title">Welcome Back</h2>
+                <p class="card-subtitle">Sign in to unlock your student success insights.</p>
+              </div>
+
+              <!-- Quick Demo Profile Selector for Hackathon Presentation -->
+              <div class="demo-role-selector" title="Switch role for one-click testing">
+                <button type="button" class="role-pill-btn active" id="role-student" data-role="student">
+                  <i data-lucide="graduation-cap" style="width: 14px; height: 14px;"></i>
+                  <span>Student</span>
+                </button>
+                <button type="button" class="role-pill-btn" id="role-faculty" data-role="faculty">
+                  <i data-lucide="user-check" style="width: 14px; height: 14px;"></i>
+                  <span>Faculty / TPO</span>
+                </button>
+                <button type="button" class="role-pill-btn" id="role-admin" data-role="admin">
+                  <i data-lucide="shield" style="width: 14px; height: 14px;"></i>
+                  <span>Admin / Dean</span>
+                </button>
+              </div>
+
+              <!-- Notification Banners -->
+              <div id="login-error-banner" class="notification-banner error" style="display: none;"></div>
+              <div id="login-success-banner" class="notification-banner success" style="display: none;"></div>
+
+              <!-- Login Form -->
+              <form id="login-form" class="auth-form" novalidate>
+                
+                <!-- Email Field -->
+                <div class="form-group">
+                  <label for="login-email" class="form-label">
+                    <span>Email Address</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <div class="input-wrapper">
+                    <i data-lucide="mail" class="input-icon-left"></i>
+                    <input 
+                      type="email" 
+                      id="login-email" 
+                      class="auth-input" 
+                      placeholder="aditya.verma@campus.edu" 
+                      autocomplete="email" 
+                      required 
+                    />
+                  </div>
+                  <div id="login-email-error" class="field-error-msg" style="display: none;"></div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                  <div class="form-label-row">
+                    <label for="login-password" class="form-label">
+                      <span>Password</span>
+                      <span class="required-star">*</span>
+                    </label>
+                    <a href="#" id="forgot-password-link" class="forgot-link">Forgot password?</a>
+                  </div>
+                  <div class="input-wrapper">
+                    <i data-lucide="lock" class="input-icon-left"></i>
+                    <input 
+                      type="password" 
+                      id="login-password" 
+                      class="auth-input" 
+                      placeholder="••••••••••••" 
+                      autocomplete="current-password" 
+                      required 
+                    />
+                    <button type="button" id="login-toggle-pwd" class="toggle-password-btn" aria-label="Toggle password visibility">
+                      <i data-lucide="eye"></i>
+                    </button>
+                  </div>
+                  <div id="login-pwd-error" class="field-error-msg" style="display: none;"></div>
+                </div>
+
+                <!-- Options Row: Remember Me -->
+                <div class="form-options-row">
+                  <label class="checkbox-label" for="remember-me">
+                    <input type="checkbox" id="remember-me" class="custom-checkbox" />
+                    <span>Remember me on this campus device</span>
+                  </label>
+                </div>
+
+                <!-- Gradient Sign In Button -->
+                <button type="submit" id="login-submit-btn" class="btn-submit-primary">
+                  <span>Sign In</span>
+                  <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                </button>
+
+                <!-- Divider -->
+                <div class="auth-divider">
+                  <span class="divider-text">OR CONTINUE WITH</span>
+                </div>
+
+                <!-- Alternate Sign In Actions -->
+                <div class="social-actions-group">
+                  <button type="button" id="google-signin-btn" class="btn-social">
+                    <!-- Google SVG Icon -->
+                    <svg width="18" height="18" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.9c2.28-2.1 3.645-5.2 3.645-9.15z"/>
+                      <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.9-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.94H1.2v3.15C3.21 21.37 7.31 24 12 24z"/>
+                      <path fill="#FBBC05" d="M5.28 14.26c-.25-.72-.38-1.49-.38-2.26s.13-1.54.38-2.26V6.59H1.2C.44 8.1 0 9.99 0 12s.44 3.9 1.2 5.41l4.08-3.15z"/>
+                      <path fill="#EA4335" d="M12 4.75c1.76 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0 7.31 0 3.21 2.63 1.2 6.59l4.08 3.15c.95-2.84 3.6-4.99 6.72-4.99z"/>
+                    </svg>
+                    <span>Google Campus SSO</span>
+                  </button>
+
+                  <button type="button" id="instant-demo-btn" class="btn-demo-fast" title="Immediate presentation view for evaluators">
+                    <i data-lucide="zap" style="width: 15px; height: 15px;"></i>
+                    <span>Judge / Evaluator Instant Access</span>
+                  </button>
+                </div>
+
+                <!-- Footer Switch Link -->
+                <div class="card-footer-switch">
+                  <span>New to the platform?</span>
+                  <a href="#" id="switch-to-register" class="switch-auth-link">Create an account</a>
+                </div>
+
+                <div class="card-security-badge">
+                  <i data-lucide="lock" style="width: 12px; height: 12px;"></i>
+                  <span>Secure access • Intelligent insights • Student success</span>
+                </div>
+
+              </form>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         VIEW 2: MASTER STUDENT REGISTRATION PAGE (Split-Screen Experience)
+         ========================================================================= -->
+    <main id="register-view" class="view-section">
+      <div class="auth-viewport">
+        <div class="auth-split-grid">
+          
+          <!-- Left Panel: Student Success Journey Experience -->
+          <section class="hero-branding">
+            <div class="hero-pill">
+              <span class="pulse-dot"></span>
+              <span class="hero-pill-text">STUDENT SUCCESS ECOSYSTEM</span>
+            </div>
+
+            <div class="hero-heading-group">
+              <div class="hero-subhead">StudentSuccess AI</div>
+              <h1 class="hero-title">
+                Your Future Starts With <br />
+                <span class="gradient-text shimmer-text">One Smart Step.</span>
+              </h1>
+              <p class="hero-description">
+                Join an intelligent learning ecosystem that helps you discover your strengths, improve your performance, and prepare for your dream career.
+              </p>
+            </div>
+
+            <!-- 3 Journey Feature Cards -->
+            <div class="feature-highlights-grid">
+              <div class="feature-pill-card">
+                <div class="feature-card-icon">
+                  <i data-lucide="book-open"></i>
+                </div>
+                <div class="feature-card-title">Academic Insights</div>
+                <div class="feature-card-desc">Personalized study targets, attendance trackers, and semester score forecasts.</div>
+              </div>
+
+              <div class="feature-pill-card">
+                <div class="feature-card-icon">
+                  <i data-lucide="radar"></i>
+                </div>
+                <div class="feature-card-title">Early Risk Detection</div>
+                <div class="feature-card-desc">Identify subjects needing extra attention weeks before midterms and finals.</div>
+              </div>
+
+              <div class="feature-pill-card">
+                <div class="feature-card-icon">
+                  <i data-lucide="award"></i>
+                </div>
+                <div class="feature-card-title">Placement Readiness</div>
+                <div class="feature-card-desc">Compare your skill benchmarks against top corporate hiring criteria and mock interviews.</div>
+              </div>
+            </div>
+
+            <!-- Illustrative Progress & Student Success Scorecard -->
+            <div class="ai-telemetry-banner animate-float-delayed" style="border-color: rgba(34, 211, 238, 0.4);">
+              <div class="telemetry-col">
+                <span class="telemetry-label">Target Success Score</span>
+                <span class="telemetry-val highlight-cyan">
+                  <i data-lucide="target" style="width: 16px; height: 16px;"></i> 87 / 100
+                </span>
+              </div>
+              <div class="telemetry-divider"></div>
+              <div class="telemetry-col">
+                <span class="telemetry-label">Placement Index</span>
+                <span class="telemetry-val highlight-green">92% Ready</span>
+              </div>
+              <div class="telemetry-divider"></div>
+              <div class="telemetry-col">
+                <span class="telemetry-label">Skill Mastery</span>
+                <span class="telemetry-val">Tier-1 Qualified</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Right Panel: Interactive Student Registration Card -->
+          <section class="auth-card-container">
+            <div class="glass-card" style="max-width: 580px;">
+              
+              <div class="card-header">
+                <h2 class="card-title">Create Your Student Account</h2>
+                <p class="card-subtitle">Build your path to academic and career success.</p>
+              </div>
+
+              <!-- Notification Banner -->
+              <div id="register-error-banner" class="notification-banner error" style="display: none;"></div>
+
+              <!-- Main Form Body -->
+              <div id="register-form-body">
+                <form id="register-form" class="auth-form" novalidate>
+                  
+                  <!-- Row 1: Full Name & Student Email -->
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label for="reg-fullname" class="form-label">
+                        <span>Full Name</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="user" class="input-icon-left"></i>
+                        <input type="text" id="reg-fullname" class="auth-input" placeholder="e.g. Aditya Verma" required />
+                      </div>
+                      <div id="reg-name-error" class="field-error-msg" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="reg-email" class="form-label">
+                        <span>Student Email</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="mail" class="input-icon-left"></i>
+                        <input type="email" id="reg-email" class="auth-input" placeholder="student@campus.edu" required />
+                      </div>
+                      <div id="reg-email-error" class="field-error-msg" style="display: none;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Row 2: Create Password & Confirm Password -->
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label for="reg-password" class="form-label">
+                        <span>Create Password</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="lock" class="input-icon-left"></i>
+                        <input type="password" id="reg-password" class="auth-input" placeholder="Min. 8 characters" required />
+                        <button type="button" id="reg-toggle-pwd" class="toggle-password-btn" aria-label="Toggle password visibility">
+                          <i data-lucide="eye"></i>
+                        </button>
+                      </div>
+                      <div id="reg-pwd-error" class="field-error-msg" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="reg-conf-password" class="form-label">
+                        <span>Confirm Password</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="shield-check" class="input-icon-left"></i>
+                        <input type="password" id="reg-conf-password" class="auth-input" placeholder="Repeat password" required />
+                        <button type="button" id="reg-toggle-conf-pwd" class="toggle-password-btn" aria-label="Toggle password visibility">
+                          <i data-lucide="eye"></i>
+                        </button>
+                      </div>
+                      <div id="reg-conf-pwd-error" class="field-error-msg" style="display: none;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Password Strength Meter & Interactive Rules -->
+                  <div class="password-strength-container">
+                    <div class="strength-info-row">
+                      <span class="strength-label">Password Strength:</span>
+                      <span id="strength-score-text" class="strength-score-text">None</span>
+                    </div>
+                    <div class="strength-bars-track">
+                      <div id="strength-bar-1" class="strength-bar-segment"></div>
+                      <div id="strength-bar-2" class="strength-bar-segment"></div>
+                      <div id="strength-bar-3" class="strength-bar-segment"></div>
+                      <div id="strength-bar-4" class="strength-bar-segment"></div>
+                    </div>
+                    <div class="password-criteria-list">
+                      <span id="crit-length" class="criteria-pill">8+ Chars</span>
+                      <span id="crit-upper" class="criteria-pill">Uppercase</span>
+                      <span id="crit-number" class="criteria-pill">Number</span>
+                      <span id="crit-special" class="criteria-pill">Symbol</span>
+                    </div>
+                  </div>
+
+                  <!-- Row 3: College Name & Roll Number -->
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label for="reg-college" class="form-label">
+                        <span>College / University</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="school" class="input-icon-left"></i>
+                        <input type="text" id="reg-college" class="auth-input" placeholder="National Institute of Tech" required />
+                      </div>
+                      <div id="reg-college-error" class="field-error-msg" style="display: none;"></div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="reg-student-id" class="form-label">
+                        <span>Student ID / Roll No.</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="hash" class="input-icon-left"></i>
+                        <input type="text" id="reg-student-id" class="auth-input" placeholder="e.g. CSE-2023-042" required />
+                      </div>
+                      <div id="reg-id-error" class="field-error-msg" style="display: none;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Row 4: Department & Study Year -->
+                  <div class="form-row-2col">
+                    <div class="form-group">
+                      <label for="reg-department" class="form-label">
+                        <span>Department</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="cpu" class="input-icon-left"></i>
+                        <select id="reg-department" class="auth-select" required>
+                          <option value="CSE" selected>Computer Science (CSE)</option>
+                          <option value="ECE">Electronics & Comm (ECE)</option>
+                          <option value="EEE">Electrical & Electronics (EEE)</option>
+                          <option value="IT">Information Technology (IT)</option>
+                          <option value="Mechanical">Mechanical Engineering</option>
+                          <option value="Civil">Civil Engineering</option>
+                          <option value="Other">Other Academic Program</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="select-chevron"></i>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="reg-year" class="form-label">
+                        <span>Current Study Year</span>
+                        <span class="required-star">*</span>
+                      </label>
+                      <div class="input-wrapper">
+                        <i data-lucide="calendar" class="input-icon-left"></i>
+                        <select id="reg-year" class="auth-select" required>
+                          <option value="1st Year">1st Year (Freshman)</option>
+                          <option value="2nd Year">2nd Year (Sophomore)</option>
+                          <option value="3rd Year">3rd Year (Junior)</option>
+                          <option value="4th Year" selected>4th Year (Senior / Final)</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="select-chevron"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Terms of Service Checkbox -->
+                  <div class="form-options-row">
+                    <label class="checkbox-label" for="reg-terms">
+                      <input type="checkbox" id="reg-terms" class="custom-checkbox" required />
+                      <span>I agree to the <a href="#" style="color: var(--cyan-bright);">Terms of Service</a> & <a href="#" style="color: var(--cyan-bright);">Privacy Policy</a></span>
+                    </label>
+                  </div>
+
+                  <!-- Submit Registration Button -->
+                  <button type="submit" id="register-submit-btn" class="btn-submit-primary">
+                    <span>Create My Account</span>
+                    <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+                  </button>
+
+                  <!-- Switch to Login -->
+                  <div class="card-footer-switch">
+                    <span>Already have an account?</span>
+                    <a href="#" id="switch-to-login" class="switch-auth-link">Sign in</a>
+                  </div>
+
+                </form>
+              </div>
+
+              <!-- Registration Success State (Shown dynamically after submit) -->
+              <div id="register-success-body" class="success-screen-wrapper" style="display: none;">
+                <div class="success-badge-glow">
+                  <i data-lucide="check" style="width: 38px; height: 38px;"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.4rem; font-weight: 800; color: #FFFFFF;">Account Created Successfully!</h3>
+                  <p style="font-size: 0.86rem; color: var(--text-secondary); margin-top: 0.35rem;">
+                    Welcome to StudentSuccess AI. Your student profile and learning telemetry have been linked.
+                  </p>
+                </div>
+
+                <div class="success-meta-card">
+                  <div class="success-meta-row">
+                    <span>Student Name:</span>
+                    <span id="success-name-display">-</span>
+                  </div>
+                  <div class="success-meta-row">
+                    <span>Email:</span>
+                    <span id="success-email-display">-</span>
+                  </div>
+                  <div class="success-meta-row">
+                    <span>Department & Year:</span>
+                    <span id="success-dept-display">-</span>
+                  </div>
+                  <div class="success-meta-row">
+                    <span>Student ID:</span>
+                    <span id="success-id-display">-</span>
+                  </div>
+                  <div class="success-meta-row">
+                    <span>Auth Engine:</span>
+                    <span id="success-mode-display" style="color: var(--cyan-bright);">-</span>
+                  </div>
+                </div>
+
+                <button type="button" id="reg-continue-dash-btn" class="btn-submit-primary" style="margin-top: 0.5rem;">
+                  <span>Continue to Student Dashboard</span>
+                  <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+                </button>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         VIEW 3: LIVE STUDENT ANALYTICS DASHBOARD (KPMG Hackathon Evaluation View)
+         ========================================================================= -->
+    <main id="dashboard-view" class="view-section">
+      <div class="dashboard-container">
+        
+        <!-- Header Controls -->
+        <div class="dash-header-row">
+          <div class="dash-title-group">
+            <h1>Campus Decision Intelligence Dashboard</h1>
+            <p>Unified data integration across Academic, Attendance, LMS, Placement, and Skills.</p>
+          </div>
+          <div class="dash-header-actions">
+            <span class="role-tag-badge">
+              <i data-lucide="shield-check" style="width: 13px; height: 13px; display: inline; vertical-align: middle;"></i>
+              Administrator & Faculty View
+            </span>
+            <button id="dash-logout-btn" class="nav-btn" style="border-color: rgba(244, 63, 94, 0.4); color: #FB7185;">
+              <i data-lucide="log-out" style="width: 14px; height: 14px;"></i>
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 7 Core Scope Data Pillars Strip -->
+        <div class="seven-pillars-strip">
+          <div class="pillar-chip active"><i data-lucide="graduation-cap" style="width: 14px; height: 14px;"></i> Academic (CGPA & Marks)</div>
+          <div class="pillar-chip active"><i data-lucide="calendar" style="width: 14px; height: 14px;"></i> Attendance (Overall & Subject)</div>
+          <div class="pillar-chip active"><i data-lucide="laptop" style="width: 14px; height: 14px;"></i> LMS (Login & Assignments)</div>
+          <div class="pillar-chip active"><i data-lucide="activity" style="width: 14px; height: 14px;"></i> Engagement (Clubs & Hackathons)</div>
+          <div class="pillar-chip active"><i data-lucide="briefcase" style="width: 14px; height: 14px;"></i> Placement (Aptitude & Mocks)</div>
+          <div class="pillar-chip active"><i data-lucide="code" style="width: 14px; height: 14px;"></i> Technical Skills</div>
+          <div class="pillar-chip active"><i data-lucide="message-square" style="width: 14px; height: 14px;"></i> Student & Faculty Feedback</div>
+        </div>
+
+        <!-- KPI Grid (4 Cards) -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">Campus Success Score</span>
+              <div class="kpi-icon-pill"><i data-lucide="trending-up" style="width: 16px; height: 16px;"></i></div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number">82.4%</span>
+              <span class="kpi-delta-tag positive">+4.2% AI Impact</span>
+            </div>
+            <span class="kpi-subtext">Composite benchmark across 2,450 students</span>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">At-Risk Interventions</span>
+              <div class="kpi-icon-pill" style="color: #FB7185; background: rgba(244, 63, 94, 0.15);"><i data-lucide="alert-triangle" style="width: 16px; height: 16px;"></i></div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number">42</span>
+              <span class="kpi-delta-tag warning">Action Required</span>
+            </div>
+            <span class="kpi-subtext">18 Academic Risk • 24 Placement Risk</span>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">Placement Readiness</span>
+              <div class="kpi-icon-pill" style="color: #34D399; background: rgba(16, 185, 129, 0.15);"><i data-lucide="check-circle" style="width: 16px; height: 16px;"></i></div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number">76.8%</span>
+              <span class="kpi-delta-tag positive">Tier-1 Qualified</span>
+            </div>
+            <span class="kpi-subtext">Assessed via coding tests & mock interviews</span>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">Active Mentor Tracks</span>
+              <div class="kpi-icon-pill" style="color: #C084FC; background: rgba(139, 92, 246, 0.15);"><i data-lucide="users" style="width: 16px; height: 16px;"></i></div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-number">89</span>
+              <span class="kpi-delta-tag positive">Counseling Active</span>
+            </div>
+            <span class="kpi-subtext">Proactive early support before semester finals</span>
+          </div>
+        </div>
+
+        <!-- KPMG Bonus Credit Features: Segmentation Matrix & Explainable AI Score -->
+        <div class="dash-analytics-split">
+          
+          <!-- Bonus Feature 1: Student Segmentation Matrix -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <div class="analytics-card-title">
+                <i data-lucide="layers" style="color: var(--cyan-bright); width: 20px; height: 20px;"></i>
+                <span>Decision Segmentation Matrix</span>
+              </div>
+              <span class="bonus-credit-badge">KPMG Bonus Credit (+5-10 Pts)</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: -0.5rem;">
+              Click any quadrant below to isolate students and trigger targeted interventions:
+            </p>
+            <div id="dash-segmentation-container" class="segmentation-grid"></div>
+          </div>
+
+          <!-- Bonus Feature 2: Explainable Score & Indicator Weights -->
+          <div class="analytics-card">
+            <div class="analytics-card-header">
+              <div class="analytics-card-title">
+                <i data-lucide="activity" style="color: var(--emerald-accent); width: 20px; height: 20px;"></i>
+                <span>Explainable AI Risk Attribution</span>
+              </div>
+              <span class="bonus-credit-badge">SHAP / Feature Weights</span>
+            </div>
+            
+            <div class="student-focus-badge">
+              <div>
+                <div class="student-focus-name">Aditya Verma (Selected)</div>
+                <div class="student-focus-id">ID: CSE-2023-042 • 4th Year • CSE</div>
+              </div>
+              <span class="risk-pill placement-risk">High Acad, Low Placement</span>
+            </div>
+
+            <div id="dash-indicators-list" class="score-breakdown-list"></div>
+          </div>
+
+        </div>
+
+        <!-- Student Roster Table -->
+        <div class="roster-card">
+          <div class="roster-toolbar">
+            <div class="analytics-card-title">
+              <i data-lucide="user-check" style="color: var(--blue-bright); width: 20px; height: 20px;"></i>
+              <span>Student Cohort Analytics & Intervention Registry</span>
+            </div>
+            <div class="roster-filters">
+              <input type="text" id="roster-search" class="roster-search-input" placeholder="Search by student name or roll..." />
+              <select id="roster-dept-filter" class="filter-select">
+                <option value="all">All Departments</option>
+                <option value="CSE">CSE</option>
+                <option value="ECE">ECE</option>
+                <option value="IT">IT</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="EEE">EEE</option>
+              </select>
+              <select id="roster-risk-filter" class="filter-select">
+                <option value="all">All Risk Levels</option>
+                <option value="risk">At-Risk Only</option>
+                <option value="safe">Safe / High Achievers</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="roster-table-responsive">
+            <table class="roster-table">
+              <thead>
+                <tr>
+                  <th>Student & ID</th>
+                  <th>Department</th>
+                  <th>CGPA</th>
+                  <th>Attendance</th>
+                  <th>Success Score</th>
+                  <th>Risk Classification</th>
+                  <th>Intervention</th>
+                </tr>
+              </thead>
+              <tbody id="student-roster-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- =========================================================================
+         MODAL 1: FORGOT PASSWORD FLOW
+         ========================================================================= -->
+    <div id="forgot-modal" class="modal-overlay">
+      <div class="modal-content-card">
+        <div class="modal-header">
+          <h3 class="modal-title">Reset Your Password</h3>
+          <button type="button" id="forgot-modal-close" class="modal-close-btn" aria-label="Close modal">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          Enter your registered student or faculty email address. We will verify your account and dispatch secure recovery instructions.
+        </p>
+
+        <div id="forgot-status-msg" class="notification-banner" style="display: none;"></div>
+
+        <form id="forgot-form" class="auth-form">
+          <div class="form-group">
+            <label for="forgot-email-input" class="form-label">Campus Email Address</label>
+            <div class="input-wrapper">
+              <i data-lucide="mail" class="input-icon-left"></i>
+              <input type="email" id="forgot-email-input" class="auth-input" placeholder="student@campus.edu" required />
+            </div>
+          </div>
+          <button type="submit" id="forgot-submit-btn" class="btn-submit-primary">
+            <span>Send Reset Link</span>
+            <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+         MODAL 2: SUPABASE AUTHENTICATION CONFIGURATION
+         ========================================================================= -->
+    <div id="supabase-modal" class="modal-overlay">
+      <div class="modal-content-card">
+        <div class="modal-header">
+          <h3 class="modal-title">Supabase Authentication Settings</h3>
+          <button type="button" id="supabase-modal-close" class="modal-close-btn" aria-label="Close modal">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          The platform operates with a <strong>Smart Demo Mode</strong> out of the box. To connect your live Supabase database, paste your project URL and public Anon Key below.
+        </p>
+
+        <div id="cfg-status-msg" class="notification-banner" style="display: none;"></div>
+
+        <form id="supabase-config-form" class="auth-form">
+          <div class="form-group">
+            <label for="cfg-supabase-url" class="form-label">Project URL (NEXT_PUBLIC_SUPABASE_URL)</label>
+            <div class="input-wrapper">
+              <i data-lucide="globe" class="input-icon-left"></i>
+              <input type="url" id="cfg-supabase-url" class="auth-input" placeholder="https://xyzcompany.supabase.co" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cfg-supabase-key" class="form-label">Public Anon Key (SUPABASE_ANON_KEY)</label>
+            <div class="input-wrapper">
+              <i data-lucide="key" class="input-icon-left"></i>
+              <input type="password" id="cfg-supabase-key" class="auth-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..." />
+            </div>
+            <span style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">
+              Keys remain local in your browser. Never commit secret service keys to frontend code.
+            </span>
+          </div>
+
+          <button type="submit" class="btn-submit-primary">
+            <span>Save & Connect Supabase</span>
+            <i data-lucide="save" style="width: 16px; height: 16px;"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/canvas-neural.js"></script>
+  <script src="js/dashboard-data.js"></script>
+  <script src="js/auth-service.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
